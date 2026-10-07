@@ -67,6 +67,7 @@ h2 { margin-bottom: 7px; font-size: 20px; letter-spacing: -.03em; }
 .action-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .action-card { display: flex; align-items: center; gap: 12px; padding: 15px; border-radius: 12px; color: #36423c; text-align: left; transition: transform .2s, box-shadow .2s; }
 .action-card:hover { transform: translateY(-2px); box-shadow: 0 8px 18px #473c2d12; }
+.action-card:disabled { cursor: wait; opacity: .65; }
 .action-card > div:nth-child(2) { flex: 1; }
 .action-card strong, .action-card span { display: block; }
 .action-card strong { font-size: 12px; }
@@ -92,6 +93,7 @@ h2 { margin-bottom: 7px; font-size: 20px; letter-spacing: -.03em; }
 .page-controls button:hover:not(:disabled), .page-controls button.selected { border-color: #2f5a50; background: #2f5a50; color: #fff; }
 .page-controls button:disabled { cursor: not-allowed; opacity: .4; }
 .practice-submit { display: flex; align-items: center; gap: 7px; margin: 17px auto 0; padding: 10px 14px; border-radius: 8px; background: #e7ded3; color: #75685d; font-size: 11px; }
+.online-practice { scroll-margin-top: 24px; }
 .print-pages { display: none; }
 .answer-key-page { width: min(100%, 210mm); min-height: 297mm; margin: 0 auto; padding: 22.5mm 15.2mm 15mm; background: #fff; color: #111; }
 .answer-key-page header { text-align: center; }
