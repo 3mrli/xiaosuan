@@ -118,7 +118,7 @@ h2 { margin-bottom: 7px; font-size: 20px; letter-spacing: -.03em; }
 	.app-shell { display: block; min-height: 0; }
 	.sidebar, .main-content, .modal-backdrop { display: none !important; }
 	.print-pages { display: block; }
-	.print-page { position: relative; width: 205mm; height: 296mm; min-height: 296mm; max-height: 296mm; overflow: hidden; break-after: page; break-inside: avoid; page-break-after: always; page-break-inside: avoid; background: #fff; color: #111; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+	.print-page { position: relative; width: 200mm; height: 287mm; min-height: 287mm; max-height: 287mm; overflow: hidden; break-after: page; break-inside: avoid; page-break-after: always; page-break-inside: avoid; background: #fff; color: #111; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 	.print-page:last-child { break-after: auto; }
 	.print-qr { position: absolute; top: 23mm; right: 12.35mm; display: grid; justify-items: center; width: 27.8mm; color: #222; font-family: 'Noto Sans SC', sans-serif; font-size: 7pt; line-height: 1.35; }
 	.print-qr canvas { width: 25mm !important; height: 25mm !important; }
@@ -133,6 +133,6 @@ h2 { margin-bottom: 7px; font-size: 20px; letter-spacing: -.03em; }
 	.print-column small { width: 8.3mm; color: #f5f5f5; font-family: Arial, sans-serif; font-size: 8pt; font-weight: 400; text-align: right; }
 	.print-column strong { font-family: Century, 'Century Schoolbook', serif; font-size: 16pt; font-weight: 700; }
 	.print-column em { display: none; }
-	.print-page footer { position: absolute; bottom: 15mm; left: 0; right: 0; color: #777; font-family: 'Noto Sans SC', sans-serif; font-size: 7pt; text-align: center; }
+	.print-page footer { position: absolute; right: 0; bottom: 6mm; left: 0; color: #777; font-family: 'Noto Sans SC', sans-serif; font-size: 7pt; text-align: center; }
 	.print-page footer strong { position: absolute; right: 5mm; font-weight: 400; }
 }
