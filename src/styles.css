@@ -33,6 +33,7 @@ button { border: 0; cursor: pointer; }
 .streak span { margin-top: 2px; color: #a88e7b; font-size: 10px; }
 .help-button { margin-top: 18px; padding-left: 12px; font-size: 12px; }
 .main-content { width: min(1240px, 100%); margin: 0 auto; padding: 52px clamp(28px, 5vw, 72px) 96px; }
+.site-footer { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 64px; padding-top: 18px; border-top: 1px solid #e7dfd5; color: #aaa198; font-size: 10px; }
 .topbar, .section-heading, .card-footer, .score-top, .report-header { display: flex; align-items: center; justify-content: space-between; }
 .topbar { margin-bottom: 42px; }
 .eyebrow { margin: 0 0 8px; color: #9b9187; font-size: 10px; font-weight: 600; letter-spacing: .16em; }

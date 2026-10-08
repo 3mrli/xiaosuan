@@ -7,6 +7,7 @@ import {
   ChevronDown,
   CircleHelp,
   Clock3,
+  Copyright,
   Download,
   FileText,
   Flame,
@@ -318,6 +319,7 @@ function App() {
 
         {activeView === '错题本' && <section className="empty-view"><div className="empty-icon"><FileText size={30} /></div><p className="eyebrow">MISTAKE NOTEBOOK</p><h2>把错题变成下一次的得分点。</h2><p>完成几组练习后，这里会收集需要再练习的题目。</p></section>}
         {activeView === '学习报告' && <section className="empty-view"><div className="empty-icon"><BarChart3 size={30} /></div><p className="eyebrow">WEEKLY REPORT</p><h2>这周的计算状态</h2><p>稳定练习比一次做很多题更重要。</p></section>}
+        <footer className="site-footer"><Copyright size={14} /><span>2026 小算研习所 · 保留所有权利</span></footer>
       </main>
 
       <section className="print-pages" aria-label="打印练习纸">
