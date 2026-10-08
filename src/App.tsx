@@ -175,9 +175,9 @@ async function createWorksheetPdf(questions: Question[], range: Range): Promise<
     context.textAlign = 'center'
     context.font = '9.33px "Noto Sans SC", sans-serif'
     context.fillStyle = '#777'
-    context.fillText('微信搜索「魔力娃口算」，在线口算学习训练，下载打印', pageWidth / 2, (287 - 20) * pixelsPerMm)
+    context.fillText('微信搜索「魔力娃口算」，在线口算学习训练，下载打印', pageWidth / 2, (287 - 12) * pixelsPerMm)
     context.textAlign = 'right'
-    context.fillText(`第(${pageIndex + 1})页`, pageWidth - 12 * pixelsPerMm, (287 - 20) * pixelsPerMm)
+    context.fillText(`第(${pageIndex + 1})页`, pageWidth - 12 * pixelsPerMm, (287 - 12) * pixelsPerMm)
     return toBytes(canvas.toDataURL('image/jpeg', 0.95))
   }))
   return createPdf(images, canvasWidth, canvasHeight)
@@ -192,13 +192,14 @@ function makeQuestions(range: Range, mode: Mode, amount: number, seedOffset = 0)
   let pageExpressions = new Set<string>()
 
   for (let index = 0; index < amount; index += 1) {
+    const pageIndex = Math.floor(index / QUESTIONS_PER_PAGE)
     if (index % QUESTIONS_PER_PAGE === 0) pageExpressions = new Set<string>()
 
     let attempt = 0
     let question: Question
     do {
-      const seed = index * 37 + attempt * 7919 + range * 11 + mode.length * 7 + seedOffset * 104729
-      const consecutiveSubtraction = mode === '减法强化' || (mode === '混合运算' && index % 2 === 1)
+      const seed = Math.floor(Math.random() * 1_000_000_000) + index * 37 + pageIndex * 104729 + attempt * 7919 + range * 11 + mode.length * 7 + seedOffset * 104729
+      const consecutiveSubtraction = mode === '减法强化' || (mode === '混合运算' && Math.random() < 0.5)
 
       if (consecutiveSubtraction) {
         const first = (seed % (range - 5)) + 6
