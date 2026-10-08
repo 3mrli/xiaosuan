@@ -112,61 +112,72 @@ function createPdf(images: Uint8Array[], width: number, height: number): Blob {
 }
 
 async function createWorksheetPdf(questions: Question[], range: Range): Promise<Blob> {
-  const canvasWidth = 794
-  const canvasHeight = 1123
+  await document.fonts.ready
+  const renderScale = 2
+  const pageWidth = 794
+  const pageHeight = 1123
+  const canvasWidth = pageWidth * renderScale
+  const canvasHeight = pageHeight * renderScale
   const pixelsPerMm = 3.78
   const images = await Promise.all(Array.from({ length: Math.ceil(questions.length / QUESTIONS_PER_PAGE) }, async (_, pageIndex) => {
     const canvas = document.createElement('canvas')
     canvas.width = canvasWidth
     canvas.height = canvasHeight
     const context = canvas.getContext('2d')!
+    context.scale(renderScale, renderScale)
     const pageQuestions = questions.slice(pageIndex * QUESTIONS_PER_PAGE, (pageIndex + 1) * QUESTIONS_PER_PAGE)
     const answerUrl = makeAnswerUrl(pageQuestions.map((question) => question.answer), pageIndex + 1, range)
     const qrCanvas = document.createElement('canvas')
-    await QRCode.toCanvas(qrCanvas, answerUrl, { errorCorrectionLevel: 'M', margin: 1, width: 170 })
+    await QRCode.toCanvas(qrCanvas, answerUrl, { errorCorrectionLevel: 'M', margin: 1, width: 340 })
     const qr = await loadImage(qrCanvas.toDataURL())
 
     context.fillStyle = '#fff'
-    context.fillRect(0, 0, canvasWidth, canvasHeight)
+    context.fillRect(0, 0, pageWidth, pageHeight)
     context.fillStyle = '#111'
     context.textAlign = 'center'
     context.font = '700 25px "Noto Sans SC", sans-serif'
-    context.fillText(`${range}以内的连加连减混合`, canvasWidth / 2, 110)
-    context.drawImage(qr, canvasWidth - (12.35 + 27.8) * pixelsPerMm, 23 * pixelsPerMm, 25 * pixelsPerMm, 25 * pixelsPerMm)
+    context.fillText(`${range}以内的连加连减混合`, pageWidth / 2, 110)
+    const qrLeft = (200 - 12.35 - 27.8) * pixelsPerMm
+    context.drawImage(qr, qrLeft, 18 * pixelsPerMm, 25 * pixelsPerMm, 25 * pixelsPerMm)
+    context.font = '9.33px "Noto Sans SC", sans-serif'
+    context.fillStyle = '#222'
+    context.textAlign = 'center'
+    context.fillText('扫码查看答案', qrLeft + 13.9 * pixelsPerMm, 18 * pixelsPerMm + 29 * pixelsPerMm)
     context.font = '12px "Noto Sans SC", sans-serif'
     context.fillStyle = '#666'
     context.textAlign = 'left'
+    const fieldWidth = (123.4 - 3 * 9.9) / 4
     ;['姓名', '日期', '用时', '成绩'].forEach((label, index) => {
-      const x = (29.3 + index * (123.4 / 4 + 9.9)) * pixelsPerMm
+      const x = (29.3 + index * (fieldWidth + 9.9)) * pixelsPerMm
       context.fillText(label, x, 145)
-      context.fillRect(x + 27, 146, 78, 1)
+      context.fillRect(x + 27, 146, fieldWidth * pixelsPerMm - 27, 1)
     })
 
     const columnXs = [15.2, 15.2 + 45 + 20, 15.2 + (45 + 20) * 2].map((value) => value * pixelsPerMm)
-    const rowHeight = (224 * pixelsPerMm) / QUESTIONS_PER_COLUMN
+    const rowHeight = (205 * pixelsPerMm) / QUESTIONS_PER_COLUMN
     context.fillStyle = '#111'
-    context.font = '700 18px Century, "Century Schoolbook", serif'
+    context.font = '600 21.33px Century, "Century Schoolbook", serif'
     pageQuestions.forEach((question, index) => {
       const column = Math.floor(index / QUESTIONS_PER_COLUMN)
       const row = index % QUESTIONS_PER_COLUMN
       const number = row * 3 + column + 1
-      const y = 49.3 * pixelsPerMm + (row + 0.68) * rowHeight
+      const y = 49.3 * pixelsPerMm + (row + 0.5) * rowHeight
       context.textAlign = 'right'
-      context.font = '12px Arial, sans-serif'
-      context.fillStyle = '#777'
+      context.font = '10.67px Arial, sans-serif'
+      context.fillStyle = '#f2f2f2'
       context.fillText(`(${number})`, columnXs[column] + 8.3 * pixelsPerMm, y)
       context.textAlign = 'left'
-      context.font = '700 18px Century, "Century Schoolbook", serif'
+      context.font = '600 21.33px Century, "Century Schoolbook", serif'
       context.fillStyle = '#111'
       context.fillText(`${question.expression} =`, columnXs[column] + 10 * pixelsPerMm, y)
     })
 
     context.textAlign = 'center'
-    context.font = '9px "Noto Sans SC", sans-serif'
+    context.font = '9.33px "Noto Sans SC", sans-serif'
     context.fillStyle = '#777'
-    context.fillText('微信搜索「魔力娃口算」，在线口算学习训练，下载打印', canvasWidth / 2, canvasHeight - 6 * pixelsPerMm)
+    context.fillText('微信搜索「魔力娃口算」，在线口算学习训练，下载打印', pageWidth / 2, (287 - 20) * pixelsPerMm)
     context.textAlign = 'right'
-    context.fillText(`第(${pageIndex + 1})页`, canvasWidth - 5 * pixelsPerMm, canvasHeight - 6 * pixelsPerMm)
+    context.fillText(`第(${pageIndex + 1})页`, pageWidth - 12 * pixelsPerMm, (287 - 20) * pixelsPerMm)
     return toBytes(canvas.toDataURL('image/jpeg', 0.95))
   }))
   return createPdf(images, canvasWidth, canvasHeight)
