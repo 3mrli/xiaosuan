@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700&display=swap');
+
+@font-face { font-family: 'Century Custom'; src: url('/CENTURY.TTF') format('truetype'), url('/xiaosuan/CENTURY.TTF') format('truetype'); font-weight: 400; font-style: normal; font-display: block; }
 
 :root { font-family: 'DM Sans', 'Noto Sans SC', sans-serif; color: #27332f; background: #f5f1ea; font-synthesis: none; text-rendering: optimizeLegibility; }
 * { box-sizing: border-box; }
@@ -103,7 +105,7 @@ h2 { margin-bottom: 7px; font-size: 20px; letter-spacing: -.03em; }
 .answer-key-grid > div { display: grid; grid-template-rows: repeat(20, 1fr); min-width: 0; }
 .answer-key-grid p { display: flex; align-items: center; gap: 1.6mm; margin: 0; white-space: nowrap; }
 .answer-key-grid span { width: 8.3mm; color: #777; font-family: Arial, sans-serif; font-size: 8pt; text-align: right; }
-.answer-key-grid strong { font-family: Century, 'Century Schoolbook', serif; font-size: 16pt; }
+.answer-key-grid strong { font-family: 'Century Custom', serif; font-size: 16pt; font-weight: 400; }
 .answer-key-page > a { display: block; margin-top: 8mm; color: #2f5a50; font-size: 11pt; text-align: center; }
 .activity-list { border-top: 1px solid #e6dfd6; }
 .activity-row { display: flex; align-items: center; gap: 13px; padding: 14px 2px; border-bottom: 1px solid #e6dfd6; }
@@ -133,7 +135,7 @@ h2 { margin-bottom: 7px; font-size: 20px; letter-spacing: -.03em; }
 	.print-column { display: grid; grid-template-rows: repeat(20, 1fr); min-width: 0; }
 	.print-column > div { display: flex; align-items: center; gap: 1.6mm; white-space: nowrap; }
 	.print-column small { width: 8.3mm; color: #f2f2f2; font-family: Arial, sans-serif; font-size: 8pt; font-weight: 400; text-align: right; }
-	.print-column strong { font-family: Century, 'Century Schoolbook', serif; font-size: 16pt; font-weight: 700; }
+	.print-column strong { font-family: 'Century Custom', serif; font-size: 16pt; font-weight: 400; }
 	.print-column em { display: none; }
 	.print-page footer { position: absolute; right: 0; bottom: 20mm; left: 0; color: #777; font-family: 'Noto Sans SC', sans-serif; font-size: 7pt; line-height: 1.4; text-align: center; }
 	.print-page footer strong { position: absolute; right: 5mm; font-weight: 400; }

@@ -156,7 +156,7 @@ async function createWorksheetPdf(questions: Question[], range: Range): Promise<
     const columnXs = [15.2, 15.2 + 45 + 20, 15.2 + (45 + 20) * 2].map((value) => value * pixelsPerMm)
     const rowHeight = (205 * pixelsPerMm) / QUESTIONS_PER_COLUMN
     context.fillStyle = '#111'
-    context.font = '600 21.33px Century, "Century Schoolbook", serif'
+    context.font = '400 21.33px "Century Custom", serif'
     pageQuestions.forEach((question, index) => {
       const column = Math.floor(index / QUESTIONS_PER_COLUMN)
       const row = index % QUESTIONS_PER_COLUMN
@@ -167,7 +167,7 @@ async function createWorksheetPdf(questions: Question[], range: Range): Promise<
       context.fillStyle = '#f2f2f2'
       context.fillText(`(${number})`, columnXs[column] + 8.3 * pixelsPerMm, y)
       context.textAlign = 'left'
-      context.font = '600 21.33px Century, "Century Schoolbook", serif'
+      context.font = '400 21.33px "Century Custom", serif'
       context.fillStyle = '#111'
       context.fillText(`${question.expression} =`, columnXs[column] + 10 * pixelsPerMm, y)
     })
