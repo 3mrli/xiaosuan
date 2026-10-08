@@ -122,7 +122,7 @@ h2 { margin-bottom: 7px; font-size: 20px; letter-spacing: -.03em; }
 	.app-shell { display: block; min-height: 0; }
 	.sidebar, .main-content, .modal-backdrop { display: none !important; }
 	.print-pages { display: block; }
-	.print-page { position: relative; width: 200mm; height: 287mm; min-height: 287mm; max-height: 287mm; overflow: hidden; break-after: page; break-inside: avoid; page-break-after: always; page-break-inside: avoid; background: #fff; color: #111; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+	.print-page { position: relative; width: 200mm; height: 277mm; min-height: 277mm; max-height: 277mm; overflow: hidden; break-after: page; break-inside: avoid; page-break-after: always; page-break-inside: avoid; background: #fff; color: #111; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 	.print-page:last-child { break-after: auto; }
 	.print-qr { position: absolute; top: 18mm; right: 12.35mm; display: grid; justify-items: center; width: 27.8mm; color: #222; font-family: 'Noto Sans SC', sans-serif; font-size: 7pt; line-height: 1.35; }
 	.print-qr canvas { width: 25mm !important; height: 25mm !important; }
